@@ -1,0 +1,1204 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Laorai Group — Transformer les ambitions en carrières</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#12202F;
+    --ink-soft:#3C4756;
+    --parchment:#F6F2E9;
+    --parchment-dim:#EFE9DA;
+    --brass:#B3874E;
+    --brass-bright:#D9A968;
+    --teal:#2F5D5A;
+    --rust:#A8452F;
+    --line: rgba(18,32,47,0.10);
+    --line-light: rgba(246,243,236,0.13);
+    --grid-line: rgba(246,243,236,0.045);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--parchment);
+    color:var(--ink);
+    font-family:'IBM Plex Sans', sans-serif;
+    line-height:1.6;
+    overflow-x:hidden;
+  }
+  h1,h2,h3,.display{
+    font-family:'Space Grotesk', sans-serif;
+    font-weight:600;
+    letter-spacing:-0.015em;
+  }
+  .mono{
+    font-family:'IBM Plex Mono', monospace;
+    letter-spacing:0.06em;
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:10.5px;
+    font-weight:400;
+    letter-spacing:0.22em;
+    text-transform:uppercase;
+    color:var(--brass);
+    display:flex;
+    align-items:center;
+    gap:12px;
+    opacity:0.9;
+  }
+  .eyebrow::before{
+    content:'';
+    width:22px;
+    height:1px;
+    background:var(--brass);
+    display:inline-block;
+    opacity:0.6;
+  }
+  a{color:inherit;}
+  .wrap{
+    max-width:1080px;
+    margin:0 auto;
+    padding:0 40px;
+  }
+  /* ---------- BLUEPRINT SIGNATURE MOTIF ---------- */
+  .crosshair{position:absolute; width:20px; height:20px; opacity:0.4; pointer-events:none;}
+  .crosshair::before,.crosshair::after{content:''; position:absolute; background:var(--brass-bright);}
+  .crosshair::before{width:100%; height:1px; top:50%; left:0;}
+  .crosshair::after{height:100%; width:1px; left:50%; top:0;}
+  .cx-tl{top:20px; left:20px;} .cx-tr{top:20px; right:20px;}
+  .cx-bl{bottom:20px; left:20px;} .cx-br{bottom:20px; right:20px;}
+  .blueprint-grid{
+    position:absolute; inset:0;
+    background-image:
+      linear-gradient(var(--grid-line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+    background-size:44px 44px;
+    pointer-events:none;
+  }
+
+  /* ---------- NAV ---------- */
+  nav{
+    position:sticky; top:0; z-index:50;
+    background:rgba(246,243,236,0.92);
+    backdrop-filter: blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  nav .wrap{
+    display:flex; align-items:center; justify-content:space-between;
+    padding-top:18px; padding-bottom:18px;
+  }
+  .brand{
+    font-family:'Space Grotesk', sans-serif;
+    font-size:20px;
+    font-weight:700;
+    letter-spacing:-0.01em;
+    display:flex; align-items:center; gap:10px;
+  }
+  .brand .dot{
+    width:8px;height:8px;border-radius:50%;
+    background:var(--brass);
+    box-shadow:0 0 0 3px rgba(184,134,63,0.18);
+  }
+  .navlinks{display:flex; gap:32px; font-size:14px;}
+  .navlinks a{
+    text-decoration:none; color:var(--ink-soft);
+    position:relative; padding-bottom:2px;
+  }
+  .navlinks a:hover{color:var(--ink);}
+  .navlinks a::after{
+    content:''; position:absolute; left:0; bottom:-4px;
+    width:0; height:1px; background:var(--brass);
+    transition:width .25s ease;
+  }
+  .navlinks a:hover::after{width:100%;}
+  .lang-toggle{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    border:1px solid var(--line);
+    border-radius:20px;
+    padding:6px 4px;
+    display:flex;
+    background:var(--parchment-dim);
+  }
+  .lang-toggle button{
+    border:none; background:transparent; cursor:pointer;
+    padding:4px 12px; border-radius:16px; color:var(--ink-soft);
+    font-family:'IBM Plex Mono', monospace; font-size:12px;
+  }
+  .lang-toggle button.active{
+    background:var(--ink); color:var(--parchment);
+  }
+
+  /* ---------- HERO ---------- */
+  header.hero{
+    background:var(--ink);
+    color:var(--parchment);
+    position:relative;
+    padding:150px 0 128px;
+    overflow:hidden;
+  }
+  header.hero::before{
+    content:'';
+    position:absolute; inset:0;
+    background-image:
+      linear-gradient(rgba(246,243,236,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(246,243,236,0.03) 1px, transparent 1px);
+    background-size:52px 52px;
+    mask-image: radial-gradient(ellipse 70% 55% at 50% 25%, black 30%, transparent 85%);
+  }
+  .hero-grid{
+    display:grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap:72px;
+    align-items:center;
+    position:relative;
+  }
+  .hero h1{
+    font-weight:600;
+    font-size:clamp(32px, 4vw, 50px);
+    line-height:1.16;
+    color:var(--parchment);
+    margin:22px 0 26px;
+  }
+  .hero h1 em{
+    font-style:normal;
+    font-weight:700;
+    color:var(--brass-bright);
+  }
+  .hero p.lede{
+    font-size:16.5px;
+    font-weight:400;
+    line-height:1.7;
+    color:rgba(246,243,236,0.62);
+    max-width:44ch;
+    margin-bottom:40px;
+  }
+  .cta-row{display:flex; gap:14px; flex-wrap:wrap;}
+  .btn{
+    display:inline-flex; align-items:center; gap:8px;
+    padding:14px 26px;
+    border-radius:1px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px; font-weight:500;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    text-decoration:none;
+    cursor:pointer;
+    border:1px solid transparent;
+    background:none;
+    appearance:none;
+    -webkit-appearance:none;
+    transition:all .25s ease;
+  }
+  button.btn{margin:0;}
+  .btn-primary{
+    background:transparent;
+    border-color:var(--brass);
+    color:var(--brass-bright);
+  }
+  .btn-primary:hover{background:var(--brass); color:var(--ink); border-color:var(--brass);}
+  .btn-ghost{
+    border-color:var(--line-light);
+    color:rgba(246,243,236,0.75);
+  }
+  .btn-ghost:hover{border-color:rgba(246,243,236,0.4); color:var(--parchment);}
+
+  /* Dial */
+  .dial-wrap{
+    position:relative;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .dial-labels{
+    position:absolute; inset:0;
+  }
+  svg.dial{width:100%; max-width:400px; height:auto; display:block; margin:0 auto;}
+  .dial-caption{
+    text-align:center;
+    margin-top:14px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:rgba(246,243,236,0.55);
+  }
+
+  /* ---------- STRIP ---------- */
+  .strip{
+    background:var(--parchment-dim);
+    border-bottom:1px solid var(--line);
+    padding:14px 0;
+  }
+  .strip .wrap{
+    display:flex; gap:40px; justify-content:center; flex-wrap:wrap;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px; color:var(--ink-soft); letter-spacing:0.04em;
+  }
+
+  /* ---------- SECTION GENERIC ---------- */
+  section{padding:128px 0;}
+  .section-head{
+    max-width:600px;
+    margin-bottom:64px;
+  }
+  .section-head h2{
+    font-weight:400;
+    font-size:clamp(26px,3vw,34px);
+    margin-top:16px;
+  }
+  .section-head p{
+    color:var(--ink-soft);
+    font-weight:400;
+    line-height:1.65;
+    margin-top:16px;
+    font-size:16px;
+  }
+
+  /* ---------- MISSION ---------- */
+  .mission{
+    display:grid;
+    grid-template-columns: 0.9fr 1.1fr;
+    gap:64px;
+    align-items:start;
+  }
+  .mission blockquote{
+    font-family:'Space Grotesk', sans-serif;
+    font-size:clamp(24px,2.6vw,32px);
+    font-weight:600;
+    letter-spacing:-0.015em;
+    line-height:1.28;
+    color:var(--ink);
+    border-left:2px solid var(--brass);
+    padding-left:24px;
+  }
+  .mission .side p{color:var(--ink-soft); font-size:15px; margin-bottom:16px;}
+
+  /* ---------- DIVISIONS ---------- */
+  .divisions{
+    background:var(--ink);
+    color:var(--parchment);
+    position:relative;
+    overflow:hidden;
+  }
+  .divisions .section-head p{color:rgba(246,243,236,0.65);}
+  .div-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:1px;
+    background:var(--line-light);
+    border:1px solid var(--line-light);
+    position:relative;
+  }
+  .div-card{
+    background:var(--ink);
+    padding:48px 38px;
+    position:relative;
+    transition:background .3s ease, transform .3s ease;
+  }
+  .div-card:hover{background:var(--ink-soft); transform:translateY(-3px);}
+  .div-card .num{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:0.1em;
+    color:var(--brass);
+    margin-bottom:28px;
+    display:block;
+    opacity:0.85;
+  }
+  .div-card h3{
+    font-weight:400;
+    font-size:22px;
+    color:var(--parchment);
+    margin-bottom:14px;
+  }
+  .div-card p{
+    font-size:14.5px;
+    font-weight:400;
+    line-height:1.65;
+    color:rgba(246,243,236,0.55);
+  }
+
+  /* ---------- ATELIER CTA ---------- */
+  .atelier{
+    background:var(--parchment);
+    border:1px solid var(--line);
+    border-top:1px solid var(--brass);
+    padding:56px;
+    display:grid;
+    grid-template-columns:1.3fr 0.7fr;
+    gap:48px;
+    align-items:center;
+    position:relative;
+    transition:box-shadow .3s ease;
+  }
+  .atelier:hover{box-shadow:0 8px 32px rgba(18,32,47,0.08);}
+  .atelier h3{font-weight:600; font-size:25px; margin:14px 0 14px;}
+  .atelier p{color:var(--ink-soft); font-size:15px; font-weight:400; line-height:1.65; max-width:48ch;}
+  .atelier-meta{
+    display:flex; gap:22px; margin-top:20px; flex-wrap:wrap;
+    font-family:'IBM Plex Mono', monospace; font-size:12px; color:var(--ink-soft);
+  }
+  .atelier-meta span{display:flex; align-items:center; gap:6px;}
+  .atelier-cta{text-align:center;}
+  .price{
+    font-family:'Space Grotesk', sans-serif;
+    font-weight:700;
+    letter-spacing:-0.01em;
+    font-size:34px;
+    color:var(--brass);
+    margin-bottom:8px;
+  }
+  .price small{font-size:13px; font-style:normal; font-family:'IBM Plex Mono',monospace; letter-spacing:0.05em; color:var(--ink-soft);}
+
+  /* ---------- FOUNDER ---------- */
+  .founder{
+    display:grid;
+    grid-template-columns:0.55fr 1.45fr;
+    gap:56px;
+    align-items:center;
+  }
+  .founder-frame{
+    aspect-ratio:4/5;
+    background:linear-gradient(155deg, var(--ink) 0%, var(--teal) 100%);
+    border-radius:2px;
+    position:relative;
+    display:flex; align-items:flex-end; padding:22px;
+  }
+  .founder-frame span{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px; color:rgba(246,243,236,0.7); letter-spacing:0.1em;
+  }
+  .founder-text h3{font-size:24px; margin-bottom:14px;}
+  .founder-text p{color:var(--ink-soft); font-size:15.5px; margin-bottom:14px; max-width:60ch;}
+  .founder-tags{display:flex; gap:10px; flex-wrap:wrap; margin-top:18px;}
+  .founder-tags span{
+    font-family:'IBM Plex Mono', monospace; font-size:11px;
+    border:1px solid var(--line); padding:5px 10px; border-radius:20px;
+    color:var(--ink-soft);
+  }
+
+  /* ---------- FOOTER ---------- */
+  footer{
+    background:var(--ink);
+    color:rgba(246,243,236,0.7);
+    padding:56px 0 32px;
+    position:relative;
+  }
+  .footer-grid{
+    display:grid;
+    grid-template-columns:1.4fr 1fr 1fr;
+    gap:40px;
+    padding-bottom:36px;
+    border-bottom:1px solid var(--line-light);
+  }
+  footer h4{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px; letter-spacing:0.14em; text-transform:uppercase;
+    color:var(--brass); margin-bottom:16px;
+  }
+  footer a{
+    display:block; text-decoration:none; color:rgba(246,243,236,0.7);
+    font-size:14px; margin-bottom:10px;
+  }
+  footer a:hover{color:var(--brass-bright);}
+  .footer-brand{font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:20px; color:var(--parchment); margin-bottom:12px;}
+  .footer-bottom{
+    display:flex; justify-content:space-between; padding-top:24px;
+    font-family:'IBM Plex Mono', monospace; font-size:11px; color:rgba(246,243,236,0.4);
+    flex-wrap:wrap; gap:10px;
+  }
+
+  .values-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:32px;
+    margin-top:24px;
+  }
+  @media (max-width:860px){
+    .hero-grid, .mission, .founder, .atelier{grid-template-columns:1fr;}
+    .div-grid{grid-template-columns:1fr;}
+    .footer-grid{grid-template-columns:1fr;}
+    .founder-frame{aspect-ratio:16/9;}
+    .values-grid{grid-template-columns:1fr 1fr;}
+  }
+  @media (max-width:520px){
+    .values-grid{grid-template-columns:1fr;}
+  }
+  @media print{
+    nav, header.hero, .strip, #mission, .divisions, #atelier, #fondatrice, footer{
+      display:none !important;
+    }
+    #guide{padding:0.3in 0 !important;}
+    #guide button{display:none !important;}
+    body{background:white;}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="brand"><span class="dot"></span> Laorai Group</div>
+    <div class="navlinks" id="navlinks">
+      <a href="#atelier">Atelier</a>
+      <a href="#mission">Mission</a>
+      <a href="#divisions">Divisions</a>
+      <a href="#guide">Guide</a>
+      <a href="#fondatrice">Fondatrice</a>
+    </div>
+    <div class="lang-toggle">
+      <button class="active" data-lang="fr">FR</button>
+      <button data-lang="en">EN</button>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="crosshair cx-tl"></div>
+  <div class="crosshair cx-tr"></div>
+  <div class="crosshair cx-bl"></div>
+  <div class="crosshair cx-br"></div>
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow" data-i18n="eyebrow">académie de formation professionnelle — fondée 2026</div>
+      <h1 data-i18n="h1">Transformer les ambitions <em>en carrières.</em></h1>
+      <p class="lede" data-i18n="lede">Laorai Group rend les carrières les plus recherchées accessibles à tous grâce à des formations concrètes, interactives et axées sur la pratique — en IA, en analyse d'affaires, et au-delà.</p>
+      <p class="lede" data-i18n="lede2" style="font-style:normal; font-weight:600; color:var(--brass-bright); font-family:'Space Grotesk',sans-serif; font-size:18px; margin-top:-24px; margin-bottom:34px;">Apprenez. Évoluez. Réussissez.</p>
+      <div class="cta-row">
+        <button onclick="openReservation('Devenir analyste d\'affaires')" class="btn btn-primary" data-i18n="ctaatelier3">Je réserve ma place — Devenir analyste d'affaires</button>
+        <button onclick="openReservation('IA 101 : Fondations')" class="btn btn-ghost" data-i18n="ctaatelier1">Je réserve ma place — IA 101</button>
+        <button onclick="openReservation('Boost ta productivité avec l\'IA')" class="btn btn-ghost" data-i18n="ctaatelier2">Je réserve ma place — Boost ta productivité</button>
+        <a href="https://calendly.com/laoraigroup/30min" target="_blank" class="btn btn-ghost" id="cta-consult" data-i18n="cta1">Réserve un appel stratégique de 30 min pour ton entreprise</a>
+      </div>
+    </div>
+    <div class="dial-wrap">
+      <svg class="dial" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="200" cy="200" r="168" stroke="rgba(246,243,236,0.12)" stroke-width="0.75"/>
+        <circle cx="200" cy="200" r="144" stroke="rgba(246,243,236,0.07)" stroke-width="0.75"/>
+        <!-- ticks -->
+        <g id="ticks" stroke="rgba(246,243,236,0.22)" stroke-width="1"></g>
+        <!-- arc from complexity to clarity -->
+        <path d="M 78 296 A 168 168 0 1 1 322 296" stroke="#A78552" stroke-width="1" stroke-linecap="round" fill="none" opacity="0.45"/>
+        <!-- needle -->
+        <g id="needle" style="transform-origin:200px 200px;">
+          <line x1="200" y1="200" x2="200" y2="76" stroke="#C7A06B" stroke-width="1.5" stroke-linecap="round"/>
+          <circle cx="200" cy="200" r="6" fill="none" stroke="#C7A06B" stroke-width="1.5"/>
+          <circle cx="200" cy="200" r="1.5" fill="#C7A06B"/>
+        </g>
+        <text x="90" y="330" fill="rgba(246,243,236,0.38)" font-family="IBM Plex Mono, monospace" font-size="10" letter-spacing="1.5">COMPLEXITÉ</text>
+        <text x="258" y="330" fill="#C7A06B" font-family="IBM Plex Mono, monospace" font-size="10" letter-spacing="1.5" opacity="0.85">CLARTÉ</text>
+      </svg>
+      <div class="dial-caption" data-i18n="dialcap">le rôle de laorai : ramener l'aiguille vers la clarté</div>
+    </div>
+  </div>
+</header>
+
+<div class="strip">
+  <div class="wrap">
+    <span>FORMATION IA · CARRIÈRE · CONSEIL</span>
+    <span>BILINGUE FR / EN</span>
+    <span>BASÉ AU QUÉBEC</span>
+  </div>
+</div>
+
+<section id="atelier" style="border-bottom:1px solid var(--line); padding-top:80px; padding-bottom:80px;">
+  <div class="wrap">
+    <div class="section-head" style="margin-bottom:40px;">
+      <div class="eyebrow" data-i18n="eyebrow4">prochain événement</div>
+      <h2 data-i18n="atelierh2">Un premier pas concret</h2>
+    </div>
+    <div class="atelier" style="grid-template-columns:1fr; gap:0; border-top:3px solid var(--rust); box-shadow:0 4px 28px rgba(168,69,47,0.12);">
+      <div style="position:absolute; top:-14px; left:32px; background:var(--rust); color:var(--parchment); font-family:'IBM Plex Mono',monospace; font-size:10.5px; letter-spacing:1.5px; text-transform:uppercase; padding:6px 14px; border-radius:2px;" data-i18n="featuredbadge">★ Formation en vedette</div>
+      <div style="margin-bottom:28px;">
+        <span class="eyebrow" style="color:var(--rust);" data-i18n="atelier3label">nouveau — formation carrière</span>
+        <h3 data-i18n="atelier3h3">Devenir analyste d'affaires</h3>
+        <p data-i18n="atelier3p">Un métier d'avenir, une profession accessible. Découvrez concrètement ce que fait un analyste d'affaires, les compétences recherchées, les certifications utiles et les étapes pour décrocher votre premier poste — avec un exercice pratique en direct.</p>
+        <div class="atelier-meta">
+          <span data-i18n="ameta1">📍 En ligne</span>
+          <span data-i18n="ameta3d">🗓 Samedi 5 septembre 2026, 10h00 (HE)</span>
+          <span data-i18n="ameta3b">⏱ 2 heures</span>
+          <span data-i18n="ameta4">💻 Ordinateur requis</span>
+        </div>
+      </div>
+
+      <div style="background:var(--parchment-dim); border:1px solid var(--line); padding:24px 28px; margin-bottom:28px;">
+        <p style="font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:1px; text-transform:uppercase; color:var(--rust); margin-bottom:14px;" data-i18n="benefits3title">À la fin de cette formation, vous serez capable de :</p>
+        <ul style="list-style:none; display:grid; grid-template-columns:1fr 1fr; gap:10px 24px;">
+          <li style="font-size:14px; color:var(--ink-soft);" data-i18n="benefit3-1">✅ Décrire le rôle d'un analyste d'affaires et ses livrables réels</li>
+          <li style="font-size:14px; color:var(--ink-soft);" data-i18n="benefit3-2">✅ Identifier les certifications et compétences qui font la différence</li>
+          <li style="font-size:14px; color:var(--ink-soft);" data-i18n="benefit3-3">✅ Repositionner votre parcours pour intégrer la profession</li>
+          <li style="font-size:14px; color:var(--ink-soft);" data-i18n="benefit3-4">✅ Structurer un besoin flou en exigence claire (exercice pratique)</li>
+          <li style="font-size:14px; color:var(--ink-soft); grid-column:1/-1;" data-i18n="benefit3-5">✅ Repartir avec une feuille de route pour démarrer votre carrière</li>
+        </ul>
+      </div>
+
+      <p style="font-size:13.5px; color:var(--ink-soft); margin-bottom:28px; font-style:italic;" data-i18n="trustline">Animé par Christelle, analyste d'affaires, formatrice en IA et membre de comité IA en entreprise.</p>
+
+      <div style="margin-bottom:28px;">
+        <p style="font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:1px; text-transform:uppercase; color:var(--rust); margin-bottom:16px;" data-i18n="agenda3title">Déroulé de l'atelier</p>
+        <div style="display:flex; flex-direction:column;">
+          <div style="display:flex; justify-content:space-between; align-items:center; padding:12px 0; border-bottom:1px solid var(--line);">
+            <span style="font-size:14px; color:var(--ink);" data-i18n="a3-agenda1">1. Introduction + pourquoi ce métier est un métier d'avenir</span>
+            <span style="font-family:'IBM Plex Mono',monospace; font-size:12px; color:var(--ink-soft); white-space:nowrap; margin-left:16px;">15 min</span>
+          </div>
+          <div style="display:flex; justify-content:space-between; align-items:center; padding:12px 0; border-bottom:1px solid var(--line);">
+            <span style="font-size:14px; color:var(--ink);" data-i18n="a3-agenda2">2. Le métier en profondeur — livrables, quotidien, secteurs</span>
+            <span style="font-family:'IBM Plex Mono',monospace; font-size:12px; color:var(--ink-soft); white-space:nowrap; margin-left:16px;">30 min</span>
+          </div>
+          <div style="display:flex; justify-content:space-between; align-items:center; padding:12px 0; border-bottom:1px solid var(--line);">
+            <span style="font-size:14px; color:var(--ink);" data-i18n="a3-agenda3">3. Pause</span>
+            <span style="font-family:'IBM Plex Mono',monospace; font-size:12px; color:var(--ink-soft); white-space:nowrap; margin-left:16px;">10 min</span>
+          </div>
+          <div style="display:flex; justify-content:space-between; align-items:center; padding:12px 0; border-bottom:1px solid var(--line);">
+            <span style="font-size:14px; color:var(--ink);" data-i18n="a3-agenda4">4. Comment intégrer la profession, même en reconversion</span>
+            <span style="font-family:'IBM Plex Mono',monospace; font-size:12px; color:var(--ink-soft); white-space:nowrap; margin-left:16px;">35 min</span>
+          </div>
+          <div style="display:flex; justify-content:space-between; align-items:center; padding:12px 0; border-bottom:1px solid var(--line);">
+            <span style="font-size:14px; color:var(--ink);" data-i18n="a3-agenda5">5. Exercice pratique : structurer un cas réel</span>
+            <span style="font-family:'IBM Plex Mono',monospace; font-size:12px; color:var(--ink-soft); white-space:nowrap; margin-left:16px;">20 min</span>
+          </div>
+          <div style="display:flex; justify-content:space-between; align-items:center; padding:12px 0;">
+            <span style="font-size:14px; color:var(--ink);" data-i18n="a3-agenda6">6. Questions-réponses + prochaines étapes</span>
+            <span style="font-family:'IBM Plex Mono',monospace; font-size:12px; color:var(--ink-soft); white-space:nowrap; margin-left:16px;">10 min</span>
+          </div>
+        </div>
+      </div>
+
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:24px; align-items:end;">
+        <div>
+          <div class="price" style="font-style:normal; font-size:32px; color:var(--rust);">195$<small data-i18n="pricesmall3"><br>par personne</small></div>
+          <p style="font-size:12.5px; color:var(--ink-soft); margin-top:8px;" data-i18n="ateliergroup3">Places limitées — sessions privées de suivi (CV, entretien) offertes après l'atelier</p>
+        </div>
+        <div>
+          <button onclick="openReservation('Devenir analyste d\'affaires')" class="btn btn-primary" style="width:100%; justify-content:center; background:transparent; border:1px solid var(--rust); color:var(--rust);" data-i18n="atelier3btn">Je réserve ma place</button>
+          <p style="font-size:12px; color:var(--ink-soft); margin-top:10px;" data-i18n="guarantee3">✔ Chaque participant repart avec une feuille de route claire pour démarrer sa carrière.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="atelier" style="grid-template-columns:1fr; gap:0; border-top:2px solid var(--brass); margin-top:56px;">
+      <div style="margin-bottom:28px;">
+        <span class="eyebrow" data-i18n="atelierlabel">atelier ponctuel</span>
+        <h3 data-i18n="atelierh3">IA 101 : Fondations</h3>
+        <p data-i18n="atelierp">Apprenez à structurer vos demandes pour obtenir des réponses utiles du premier coup. Vous repartez avec votre propre carnet de prompts prêts à l'emploi — pas juste des notes, un outil que vous réutilisez dès le lendemain.</p>
+        <div class="atelier-meta">
+          <span data-i18n="ameta1">📍 En ligne</span>
+          <span data-i18n="ameta2">🗓 Date à confirmer</span>
+          <span data-i18n="ameta3">⏱ 90 minutes</span>
+          <span data-i18n="ameta4">💻 Ordinateur requis</span>
+        </div>
+      </div>
+
+      <div style="background:var(--parchment-dim); border:1px solid var(--line); padding:24px 28px; margin-bottom:28px;">
+        <p style="font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:1px; text-transform:uppercase; color:var(--brass); margin-bottom:14px;" data-i18n="benefitstitle">À la fin de cette formation, vous serez capable de :</p>
+        <ul style="list-style:none; display:grid; grid-template-columns:1fr 1fr; gap:10px 24px;">
+          <li style="font-size:14px; color:var(--ink-soft);" data-i18n="benefit1">✅ Distinguer ce que l'IA peut et ne peut pas faire</li>
+          <li style="font-size:14px; color:var(--ink-soft);" data-i18n="benefit2">✅ Choisir le bon outil IA selon la tâche</li>
+          <li style="font-size:14px; color:var(--ink-soft);" data-i18n="benefit3">✅ Maîtriser le cadre de prompting en 4 éléments</li>
+          <li style="font-size:14px; color:var(--ink-soft);" data-i18n="benefit4">✅ Corriger et améliorer une réponse insatisfaisante</li>
+          <li style="font-size:14px; color:var(--ink-soft); grid-column:1/-1;" data-i18n="benefit5">✅ Repartir avec sa propre bibliothèque de prompts</li>
+        </ul>
+      </div>
+
+      <p style="font-size:13.5px; color:var(--ink-soft); margin-bottom:28px; font-style:italic;" data-i18n="trustline">Animé par Christelle, analyste d'affaires, formatrice en IA et membre de comité IA en entreprise.</p>
+
+      <div style="margin-bottom:28px;">
+        <p style="font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:1px; text-transform:uppercase; color:var(--brass); margin-bottom:16px;" data-i18n="agendatitle">Déroulé de l'atelier</p>
+        <div style="display:flex; flex-direction:column;">
+          <div style="display:flex; justify-content:space-between; align-items:center; padding:12px 0; border-bottom:1px solid var(--line);">
+            <span style="font-size:14px; color:var(--ink);" data-i18n="agenda1">1. Démystifier l'IA</span>
+            <span style="font-family:'IBM Plex Mono',monospace; font-size:12px; color:var(--ink-soft); white-space:nowrap; margin-left:16px;">12 min</span>
+          </div>
+          <div style="display:flex; justify-content:space-between; align-items:center; padding:12px 0; border-bottom:1px solid var(--line);">
+            <span style="font-size:14px; color:var(--ink);" data-i18n="agenda2">2. Le paysage des outils — lequel pour quel usage</span>
+            <span style="font-family:'IBM Plex Mono',monospace; font-size:12px; color:var(--ink-soft); white-space:nowrap; margin-left:16px;">10 min</span>
+          </div>
+          <div style="display:flex; justify-content:space-between; align-items:center; padding:12px 0; border-bottom:1px solid var(--line);">
+            <span style="font-size:14px; color:var(--ink);" data-i18n="agenda3">3. La méthode de prompting (cadre en 4 éléments)</span>
+            <span style="font-family:'IBM Plex Mono',monospace; font-size:12px; color:var(--ink-soft); white-space:nowrap; margin-left:16px;">20 min</span>
+          </div>
+          <div style="display:flex; justify-content:space-between; align-items:center; padding:12px 0; border-bottom:1px solid var(--line);">
+            <span style="font-size:14px; color:var(--ink);" data-i18n="agenda4">4. Pratique guidée sur son propre outil</span>
+            <span style="font-family:'IBM Plex Mono',monospace; font-size:12px; color:var(--ink-soft); white-space:nowrap; margin-left:16px;">28 min</span>
+          </div>
+          <div style="display:flex; justify-content:space-between; align-items:center; padding:12px 0; border-bottom:1px solid var(--line);">
+            <span style="font-size:14px; color:var(--ink);" data-i18n="agenda5">5. Itérer + erreurs fréquentes</span>
+            <span style="font-family:'IBM Plex Mono',monospace; font-size:12px; color:var(--ink-soft); white-space:nowrap; margin-left:16px;">10 min</span>
+          </div>
+          <div style="display:flex; justify-content:space-between; align-items:center; padding:12px 0;">
+            <span style="font-size:14px; color:var(--ink);" data-i18n="agenda6">6. Clôture + remise du carnet de prompts</span>
+            <span style="font-family:'IBM Plex Mono',monospace; font-size:12px; color:var(--ink-soft); white-space:nowrap; margin-left:16px;">10 min</span>
+          </div>
+        </div>
+      </div>
+
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:24px; align-items:end;">
+        <div>
+          <div class="price" style="font-style:normal; font-size:32px;">295$<small data-i18n="pricesmall"><br>par personne</small></div>
+          <p style="font-size:12.5px; color:var(--ink-soft); margin-top:8px;" data-i18n="ateliergroup">Équipe (jusqu'à 10 pers.) : sur devis</p>
+        </div>
+        <div>
+          <button onclick="openReservation('IA 101 : Fondations')" class="btn btn-primary" style="width:100%; justify-content:center;" data-i18n="atelierbtn">Je réserve ma place</button>
+          <p style="font-size:12px; color:var(--ink-soft); margin-top:10px;" data-i18n="guarantee">✔ Tous les participants repartent avec le guide PDF et leur bibliothèque de prompts.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="atelier" style="grid-template-columns:1fr; gap:0; border-top:2px solid var(--teal); margin-top:56px;">
+      <div style="margin-bottom:28px;">
+        <span class="eyebrow" style="color:var(--teal);" data-i18n="atelier2label">atelier — niveau 2</span>
+        <h3 data-i18n="atelier2h3">Boost ta productivité avec l'IA</h3>
+        <p data-i18n="atelier2p">Apprenez à utiliser Claude directement dans Excel, Word et PowerPoint pour accélérer votre travail quotidien — modèles, présentations, révisions de documents — puis créez vos propres automatisations. Vous repartez avec des outils concrets, pas juste des idées.</p>
+        <div class="atelier-meta">
+          <span data-i18n="ameta1">📍 En ligne</span>
+          <span data-i18n="ameta2b">🗓 Date à confirmer</span>
+          <span data-i18n="ameta3">⏱ 90 minutes</span>
+          <span data-i18n="ameta5">💻 Ordinateur + Claude Desktop installé</span>
+        </div>
+      </div>
+
+      <div style="background:var(--parchment-dim); border:1px solid var(--line); padding:24px 28px; margin-bottom:28px;">
+        <p style="font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:1px; text-transform:uppercase; color:var(--teal); margin-bottom:14px;" data-i18n="benefits2title">À la fin de cette formation, vous serez capable de :</p>
+        <ul style="list-style:none; display:grid; grid-template-columns:1fr 1fr; gap:10px 24px;">
+          <li style="font-size:14px; color:var(--ink-soft);" data-i18n="benefit2-1">✅ Utiliser Claude directement dans Excel, Word et PowerPoint</li>
+          <li style="font-size:14px; color:var(--ink-soft);" data-i18n="benefit2-2">✅ Bâtir un modèle ou une analyse sans casser vos formules</li>
+          <li style="font-size:14px; color:var(--ink-soft);" data-i18n="benefit2-3">✅ Générer une présentation dans votre propre gabarit</li>
+          <li style="font-size:14px; color:var(--ink-soft);" data-i18n="benefit2-4">✅ Enchaîner un flux courriel → document → présentation sans tout retaper</li>
+          <li style="font-size:14px; color:var(--ink-soft); grid-column:1/-1;" data-i18n="benefit2-5">✅ Créer sa première Skill personnalisée et réutilisable</li>
+        </ul>
+      </div>
+
+      <p style="font-size:13.5px; color:var(--ink-soft); margin-bottom:28px; font-style:italic;" data-i18n="prerequisite">Prérequis : notions de base en prompting recommandées (IA 101 ou équivalent) — non obligatoire.</p>
+
+      <div style="margin-bottom:28px;">
+        <p style="font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:1px; text-transform:uppercase; color:var(--teal); margin-bottom:16px;" data-i18n="agenda2title">Déroulé de l'atelier</p>
+        <div style="display:flex; flex-direction:column;">
+          <div style="display:flex; justify-content:space-between; align-items:center; padding:12px 0; border-bottom:1px solid var(--line);">
+            <span style="font-size:14px; color:var(--ink);" data-i18n="a2-agenda1">1. Retour rapide sur les fondations</span>
+            <span style="font-family:'IBM Plex Mono',monospace; font-size:12px; color:var(--ink-soft); white-space:nowrap; margin-left:16px;">8 min</span>
+          </div>
+          <div style="display:flex; justify-content:space-between; align-items:center; padding:12px 0; border-bottom:1px solid var(--line);">
+            <span style="font-size:14px; color:var(--ink);" data-i18n="a2-agenda2">2. Claude dans Excel — modèles, analyses, formules sans les casser</span>
+            <span style="font-family:'IBM Plex Mono',monospace; font-size:12px; color:var(--ink-soft); white-space:nowrap; margin-left:16px;">15 min</span>
+          </div>
+          <div style="display:flex; justify-content:space-between; align-items:center; padding:12px 0; border-bottom:1px solid var(--line);">
+            <span style="font-size:14px; color:var(--ink);" data-i18n="a2-agenda3">3. Claude dans PowerPoint — bâtir un deck dans son propre gabarit</span>
+            <span style="font-family:'IBM Plex Mono',monospace; font-size:12px; color:var(--ink-soft); white-space:nowrap; margin-left:16px;">12 min</span>
+          </div>
+          <div style="display:flex; justify-content:space-between; align-items:center; padding:12px 0; border-bottom:1px solid var(--line);">
+            <span style="font-size:14px; color:var(--ink);" data-i18n="a2-agenda4">4. Claude dans Word — révision et rédaction avec suivi des modifications</span>
+            <span style="font-family:'IBM Plex Mono',monospace; font-size:12px; color:var(--ink-soft); white-space:nowrap; margin-left:16px;">10 min</span>
+          </div>
+          <div style="display:flex; justify-content:space-between; align-items:center; padding:12px 0; border-bottom:1px solid var(--line);">
+            <span style="font-size:14px; color:var(--ink);" data-i18n="a2-agenda5">5. Flux de travail complet : d'un courriel à une présentation finale</span>
+            <span style="font-family:'IBM Plex Mono',monospace; font-size:12px; color:var(--ink-soft); white-space:nowrap; margin-left:16px;">15 min</span>
+          </div>
+          <div style="display:flex; justify-content:space-between; align-items:center; padding:12px 0; border-bottom:1px solid var(--line);">
+            <span style="font-size:14px; color:var(--ink);" data-i18n="a2-agenda6">6. Créer sa première Skill personnalisée</span>
+            <span style="font-family:'IBM Plex Mono',monospace; font-size:12px; color:var(--ink-soft); white-space:nowrap; margin-left:16px;">15 min</span>
+          </div>
+          <div style="display:flex; justify-content:space-between; align-items:center; padding:12px 0;">
+            <span style="font-size:14px; color:var(--ink);" data-i18n="a2-agenda7">7. Site web simple avec l'IA + plan d'action + clôture</span>
+            <span style="font-family:'IBM Plex Mono',monospace; font-size:12px; color:var(--ink-soft); white-space:nowrap; margin-left:16px;">15 min</span>
+          </div>
+        </div>
+      </div>
+
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:24px; align-items:end;">
+        <div>
+          <div class="price" style="font-style:normal; font-size:32px; color:var(--teal);">395$<small data-i18n="pricesmall2"><br>par personne</small></div>
+          <p style="font-size:12.5px; color:var(--ink-soft); margin-top:8px;" data-i18n="ateliergroup2">Équipe (jusqu'à 10 pers.) : sur devis</p>
+        </div>
+        <div>
+          <button onclick="openReservation('Boost ta productivité avec l\'IA')" class="btn btn-primary" style="width:100%; justify-content:center; background:transparent; border:1px solid var(--teal); color:var(--teal);" data-i18n="atelier2btn">Je réserve ma place</button>
+          <p style="font-size:12px; color:var(--ink-soft); margin-top:10px;" data-i18n="guarantee2">✔ Chaque participant repart avec sa première Skill et son plan d'action.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="mission">
+  <div class="wrap mission">
+    <blockquote data-i18n="quote">« Transformer les ambitions en carrières. »</blockquote>
+    <div class="side">
+      <div class="eyebrow" data-i18n="eyebrow2">notre mission</div>
+      <p data-i18n="mission1" style="margin-top:16px;">Chez Laorai Group, notre mission est de rendre les carrières les plus recherchées accessibles à tous grâce à des formations concrètes, interactives et axées sur la pratique.</p>
+      <p data-i18n="mission2">Nous accompagnons nos apprenants dans le développement des compétences, des outils et de la confiance nécessaires pour réussir leur transition professionnelle — avec l'ambition de devenir la référence francophone en formation professionnelle.</p>
+    </div>
+  </div>
+  <div class="wrap" style="margin-top:64px;">
+    <div class="eyebrow" data-i18n="eyebrowvalues">nos valeurs</div>
+    <div class="values-grid">
+      <div>
+        <p class="mono" style="font-size:11px; color:var(--brass); text-transform:uppercase; margin-bottom:6px;" data-i18n="value1h">V.01 — Excellence</p>
+        <p style="font-size:13.5px; color:var(--ink-soft); line-height:1.55;" data-i18n="value1p">Des formations de haute qualité, basées sur les meilleures pratiques et directement applicables en entreprise.</p>
+      </div>
+      <div>
+        <p class="mono" style="font-size:11px; color:var(--brass); text-transform:uppercase; margin-bottom:6px;" data-i18n="value2h">V.02 — Innovation</p>
+        <p style="font-size:13.5px; color:var(--ink-soft); line-height:1.55;" data-i18n="value2p">Intégrer les outils, technologies et méthodes les plus actuels dans chaque formation.</p>
+      </div>
+      <div>
+        <p class="mono" style="font-size:11px; color:var(--brass); text-transform:uppercase; margin-bottom:6px;" data-i18n="value3h">V.03 — Accessibilité</p>
+        <p style="font-size:13.5px; color:var(--ink-soft); line-height:1.55;" data-i18n="value3p">Rendre les carrières d'avenir accessibles à tous, peu importe le point de départ.</p>
+      </div>
+      <div>
+        <p class="mono" style="font-size:11px; color:var(--brass); text-transform:uppercase; margin-bottom:6px;" data-i18n="value4h">V.04 — Intégrité</p>
+        <p style="font-size:13.5px; color:var(--ink-soft); line-height:1.55;" data-i18n="value4p">Former avec transparence, professionnalisme et éthique, en toute circonstance.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="divisions" id="divisions">
+  <div class="blueprint-grid"></div>
+  <div class="crosshair cx-tl"></div>
+  <div class="crosshair cx-tr"></div>
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow" data-i18n="eyebrow3">nos formations</div>
+      <h2 data-i18n="divh2">Un catalogue pensé pour faire évoluer ta carrière</h2>
+      <p data-i18n="divp">Laorai Group est une académie de formation professionnelle organisée autour de trois piliers, du premier atelier jusqu'à l'accompagnement personnalisé.</p>
+    </div>
+    <div class="div-grid">
+      <div class="div-card">
+        <span class="num">01 — ACADEMY</span>
+        <h3 data-i18n="d1h">Laorai Academy</h3>
+        <p data-i18n="d1p">Formations de carrière pour intégrer les métiers les plus recherchés : analyste d'affaires, et bientôt gestion de projet, Product Owner, Scrum Master.</p>
+      </div>
+      <div class="div-card">
+        <span class="num">02 — AI</span>
+        <h3 data-i18n="d2h">Laorai AI</h3>
+        <p data-i18n="d2p">Formation pratique à l'intelligence artificielle en entreprise : IA 101, Boost ta productivité, et automatisations sur mesure.</p>
+      </div>
+      <div class="div-card">
+        <span class="num">03 — ADVISORY</span>
+        <h3 data-i18n="d3h">Laorai Advisory</h3>
+        <p data-i18n="d3p">Accompagnement individuel — révision de CV, simulation d'entretien, plan de transition — et conseil en transformation numérique pour les organisations.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="guide" style="background:var(--parchment-dim); border-top:1px solid var(--line); border-bottom:1px solid var(--line);">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">guide gratuit</div>
+      <h2>L'IA pour PME — par où commencer, concrètement</h2>
+      <p>Six étapes simples pour intégrer l'intelligence artificielle dans votre entreprise — sans équipe technique, sans jargon, sans tout changer d'un coup.</p>
+      <button onclick="window.print()" class="btn btn-primary" style="margin-top:20px; border:1px solid var(--brass); background:transparent; color:var(--brass);">Enregistrer en PDF</button>
+    </div>
+
+    <div style="max-width:720px;">
+      <p style="font-size:15px; color:var(--ink-soft); margin-bottom:28px;">La majorité des PME savent que l'intelligence artificielle est incontournable — mais peu savent par où commencer. Ce guide n'est pas une liste d'outils à essayer au hasard : c'est une séquence pensée pour une petite équipe, sans département technologique, qui veut avancer sans se perdre.</p>
+
+      <div style="background:var(--ink); color:var(--parchment); padding:20px 24px; margin-bottom:28px; display:flex; justify-content:space-between; align-items:center; gap:20px; flex-wrap:wrap;">
+        <p style="font-size:13.5px; color:rgba(246,243,236,0.75); margin:0; max-width:60ch;">Ce guide couvre les bases. L'atelier <strong style="color:var(--brass-bright);">IA 101 : Fondations</strong> va plus loin — 90 minutes en direct pour pratiquer et repartir avec votre propre bibliothèque de prompts.</p>
+        <a href="#atelier" class="btn btn-primary" style="white-space:nowrap;">Voir l'atelier</a>
+      </div>
+
+      <div style="border-left:2px solid var(--brass); padding-left:20px; margin-bottom:36px;">
+        <p style="font-size:14px; font-style:italic; color:var(--ink); margin:0;">Ce guide n'est pas une promesse de transformation instantanée. L'adoption de l'IA en entreprise fonctionne mieux étape par étape, avec des résultats mesurés à chaque tournant.</p>
+      </div>
+
+      <div style="margin-bottom:28px; padding-bottom:24px; border-bottom:1px solid var(--line);">
+        <div style="display:flex; gap:16px; align-items:baseline; margin-bottom:8px;">
+          <span style="font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:24px; color:var(--brass);">01</span>
+          <h3 style="font-size:17px; font-weight:600;">Cartographier les tâches répétitives, pas les technologies</h3>
+        </div>
+        <p style="margin-left:48px; font-size:14.5px; color:var(--ink-soft);">Avant de choisir un outil, identifiez les tâches qui reviennent chaque semaine et qui suivent un schéma prévisible : rédaction de courriels types, résumés de documents, réponses aux questions fréquentes, tri de données.</p>
+      </div>
+
+      <div style="margin-bottom:28px; padding-bottom:24px; border-bottom:1px solid var(--line);">
+        <div style="display:flex; gap:16px; align-items:baseline; margin-bottom:8px;">
+          <span style="font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:24px; color:var(--brass);">02</span>
+          <h3 style="font-size:17px; font-weight:600;">Choisir un seul cas d'usage pour commencer</h3>
+        </div>
+        <p style="margin-left:48px; font-size:14.5px; color:var(--ink-soft);">Résistez à l'envie de tout automatiser en même temps. Un seul cas d'usage bien choisi permet à l'équipe d'apprendre sans être submergée, et donne un résultat mesurable en quelques semaines.</p>
+      </div>
+
+      <div style="margin-bottom:28px; padding-bottom:24px; border-bottom:1px solid var(--line);">
+        <div style="display:flex; gap:16px; align-items:baseline; margin-bottom:8px;">
+          <span style="font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:24px; color:var(--brass);">03</span>
+          <h3 style="font-size:17px; font-weight:600;">Former les gens avant d'imposer l'outil</h3>
+        </div>
+        <p style="margin-left:48px; font-size:14.5px; color:var(--ink-soft);">La résistance au changement vient rarement de l'outil lui-même — elle vient du sentiment de ne pas savoir s'en servir. Une session de 60 à 90 minutes, avec des exemples tirés du travail réel de l'équipe, change complètement le taux d'adoption.</p>
+      </div>
+
+      <div style="margin-bottom:28px; padding-bottom:24px; border-bottom:1px solid var(--line);">
+        <div style="display:flex; gap:16px; align-items:baseline; margin-bottom:8px;">
+          <span style="font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:24px; color:var(--brass);">04</span>
+          <h3 style="font-size:17px; font-weight:600;">Mesurer un seul indicateur, dès le départ</h3>
+        </div>
+        <p style="margin-left:48px; font-size:14.5px; color:var(--ink-soft);">Temps économisé par semaine, nombre de tâches déléguées, ou délai de réponse aux clients — choisissez un indicateur simple avant de commencer, pas après.</p>
+      </div>
+
+      <div style="margin-bottom:28px; padding-bottom:24px; border-bottom:1px solid var(--line);">
+        <div style="display:flex; gap:16px; align-items:baseline; margin-bottom:8px;">
+          <span style="font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:24px; color:var(--brass);">05</span>
+          <h3 style="font-size:17px; font-weight:600;">Établir des règles claires d'utilisation</h3>
+        </div>
+        <p style="margin-left:48px; font-size:14.5px; color:var(--ink-soft);">Quelles informations peuvent être partagées avec un outil d'IA, et lesquelles ne le peuvent pas ? Qui valide le contenu généré avant qu'il parte au client ? Deux ou trois règles simples évitent la majorité des faux pas.</p>
+      </div>
+
+      <div style="margin-bottom:36px;">
+        <div style="display:flex; gap:16px; align-items:baseline; margin-bottom:8px;">
+          <span style="font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:24px; color:var(--brass);">06</span>
+          <h3 style="font-size:17px; font-weight:600;">Étendre seulement après un résultat prouvé</h3>
+        </div>
+        <p style="margin-left:48px; font-size:14.5px; color:var(--ink-soft);">Une fois le premier cas d'usage stabilisé et le résultat mesuré, passez au suivant — en réutilisant ce que l'équipe a appris. C'est cette progression qui construit une adoption durable de l'IA.</p>
+      </div>
+
+      <div style="background:var(--ink); color:var(--parchment); padding:36px; text-align:center;">
+        <p style="font-family:'Space Grotesk',sans-serif; font-weight:600; font-size:18px; color:var(--parchment); margin-bottom:16px;">L'IA expliquée simplement. Déployée rapidement. Mesurable immédiatement.</p>
+        <p style="color:rgba(246,243,236,0.65); font-size:14px; margin-bottom:20px;">Prêt·e à mettre ces bases en pratique ? L'atelier IA 101 : Fondations vous guide en direct, avec pratique et bibliothèque de prompts à la clé.</p>
+        <div style="display:flex; gap:14px; justify-content:center; flex-wrap:wrap;">
+          <a href="#atelier" class="btn btn-primary">Voir l'atelier IA 101</a>
+          <a href="https://calendly.com/laoraigroup/30min" target="_blank" class="btn btn-ghost">Réserver une consultation</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="fondatrice">
+  <div class="wrap founder">
+    <div class="founder-frame"><span>CHRISTELLE — LAORAI GROUP</span></div>
+    <div class="founder-text">
+      <div class="eyebrow" data-i18n="eyebrow5">fondatrice</div>
+      <h3 data-i18n="founderh3" style="margin-top:14px;">Vulgariser l'IA, une décision à la fois</h3>
+      <p data-i18n="founderp1">Pendant plusieurs années, j'ai accompagné des équipes dans la transformation numérique — en entreprise, comme analyste d'affaires, puis comme formatrice interne en IA. Une chose revenait constamment : tout le monde parlait d'intelligence artificielle, mais peu savaient comment l'utiliser concrètement, au quotidien, sans équipe technique.</p>
+      <p data-i18n="founderp2">J'ai créé Laorai Group pour combler cet écart — rendre l'IA compréhensible et applicable, en français comme en anglais, pour les entreprises qui n'ont pas le luxe d'un département technologique.</p>
+      <div class="founder-tags">
+        <span data-i18n="tag1">Formation & vulgarisation</span>
+        <span data-i18n="tag2">Bilingue FR/EN</span>
+        <span data-i18n="tag3">Analyse d'affaires</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="confidentialite" style="background:var(--parchment-dim); padding:80px 0;">
+  <div class="wrap" style="max-width:720px;">
+    <div class="eyebrow">politique de confidentialité</div>
+    <h2 style="font-size:26px; margin-top:14px; margin-bottom:24px;">Comment nous protégeons vos renseignements</h2>
+    <p style="font-size:14px; color:var(--ink-soft); margin-bottom:20px;">Dernière mise à jour : juillet 2026. Cette politique s'applique conformément à la Loi 25 sur la protection des renseignements personnels dans le secteur privé (Québec).</p>
+
+    <h3 style="font-size:16px; margin-bottom:8px; margin-top:24px;">Quels renseignements nous collectons</h3>
+    <p style="font-size:14px; color:var(--ink-soft); margin-bottom:16px;">Lorsque vous remplissez notre formulaire de réservation ou réservez un appel via Calendly, nous collectons : votre nom, votre adresse courriel, le nom de votre entreprise (si fourni) et tout message que vous nous transmettez.</p>
+
+    <h3 style="font-size:16px; margin-bottom:8px; margin-top:24px;">Pourquoi nous les collectons</h3>
+    <p style="font-size:14px; color:var(--ink-soft); margin-bottom:16px;">Uniquement pour répondre à votre demande d'inscription ou de consultation, vous transmettre les détails et le prix d'un atelier, et assurer le suivi administratif de nos formations.</p>
+
+    <h3 style="font-size:16px; margin-bottom:8px; margin-top:24px;">Où sont stockées vos données</h3>
+    <p style="font-size:14px; color:var(--ink-soft); margin-bottom:16px;">Les soumissions du formulaire sont hébergées par Netlify (infrastructure aux États-Unis). Les réservations d'appel sont gérées par Calendly (infrastructure aux États-Unis). Ces fournisseurs appliquent leurs propres mesures de sécurité; nous ne partageons vos renseignements avec aucun autre tiers.</p>
+
+    <h3 style="font-size:16px; margin-bottom:8px; margin-top:24px;">Combien de temps nous les conservons</h3>
+    <p style="font-size:14px; color:var(--ink-soft); margin-bottom:16px;">Nous conservons vos renseignements le temps nécessaire pour assurer le suivi de votre demande, et jusqu'à 24 mois par la suite à des fins administratives, sauf si vous demandez leur suppression avant ce délai.</p>
+
+    <h3 style="font-size:16px; margin-bottom:8px; margin-top:24px;">Vos droits</h3>
+    <p style="font-size:14px; color:var(--ink-soft); margin-bottom:16px;">Vous pouvez en tout temps demander à consulter les renseignements que nous détenons à votre sujet, les faire corriger s'ils sont inexacts, ou en demander la suppression. Pour toute demande, écrivez-nous à l'adresse ci-dessous.</p>
+
+    <h3 style="font-size:16px; margin-bottom:8px; margin-top:24px;">Responsable de la protection des renseignements personnels</h3>
+    <p style="font-size:14px; color:var(--ink-soft); margin-bottom:16px;">Christelle, Laorai Group — <a href="mailto:laoraigroup@outlook.com" style="color:var(--brass);">laoraigroup@outlook.com</a></p>
+
+    <p style="font-size:12.5px; color:var(--ink-soft); margin-top:32px; font-style:italic;">Ce document est un gabarit de base et ne constitue pas un avis juridique. Pour une conformité complète adaptée à votre situation, consultez un professionnel du droit.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="crosshair cx-bl"></div>
+  <div class="crosshair cx-br"></div>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand">Laorai Group</div>
+        <p style="font-size:14px; max-width:36ch; color:rgba(246,243,236,0.6);" data-i18n="footerlede">Transformer les ambitions en carrières.</p>
+      </div>
+      <div>
+        <h4 data-i18n="fnav1">Navigation</h4>
+        <a href="#mission" data-i18n="fmission">Mission</a>
+        <a href="#divisions" data-i18n="fdiv">Divisions</a>
+        <a href="#atelier" data-i18n="fatelier">Atelier</a>
+      </div>
+      <div>
+        <h4 data-i18n="fcontact">Contact</h4>
+        <a href="https://www.instagram.com/laoraigroup" target="_blank" data-i18n="finstagram">Instagram</a>
+        <a href="https://www.facebook.com/profile.php?id=61591856020128" target="_blank" data-i18n="ffacebook">Facebook</a>
+        <a href="mailto:laoraigroup@outlook.com">laoraigroup@outlook.com</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Laorai Group</span>
+      <a href="#confidentialite" style="color:rgba(246,243,236,0.4); text-decoration:underline;" data-i18n="fprivacy">Politique de confidentialité</a>
+      <span data-i18n="fbottom">Longueuil, Québec</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // ticks around dial
+  const ticksGroup = document.getElementById('ticks');
+  const cx=200, cy=200, rOuter=168, rInner=156;
+  for(let i=0;i<=24;i++){
+    const angle = Math.PI * (1 + i/24); // half circle bottom
+    const x1 = cx + rOuter*Math.cos(angle);
+    const y1 = cy + rOuter*Math.sin(angle);
+    const x2 = cx + rInner*Math.cos(angle);
+    const y2 = cy + rInner*Math.sin(angle);
+    const line = document.createElementNS('http://www.w3.org/2000/svg','line');
+    line.setAttribute('x1',x1); line.setAttribute('y1',y1);
+    line.setAttribute('x2',x2); line.setAttribute('y2',y2);
+    ticksGroup.appendChild(line);
+  }
+
+  // needle animation: sweep from complexity (left, ~-80deg) to clarity (right, ~80deg) and settle
+  const needle = document.getElementById('needle');
+  let angle = -85;
+  const target = 65;
+  needle.style.transform = `rotate(${angle}deg)`;
+  let started = false;
+  function animateNeedle(){
+    if(started) return;
+    started = true;
+    let start = null;
+    const duration = 2200;
+    function step(ts){
+      if(!start) start = ts;
+      const progress = Math.min((ts-start)/duration, 1);
+      const eased = 1 - Math.pow(1-progress, 3);
+      const current = -85 + eased * (target - (-85));
+      needle.style.transform = `rotate(${current}deg)`;
+      if(progress < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+  const obs = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting) animateNeedle(); });
+  }, {threshold:0.4});
+  obs.observe(document.querySelector('.dial-wrap'));
+
+  // i18n
+  const translations = {
+    en: {
+      eyebrow:"professional training academy — founded 2026",
+      h1:"Transforming ambitions <em>into careers.</em>",
+      lede:"Laorai Group makes the most in-demand careers accessible to everyone through concrete, interactive, hands-on training — in AI, business analysis, and beyond.",
+      lede2:"Learn. Grow. Succeed.",
+      cta1:"Book a 30-min strategy call for your business",
+      ctaatelier1:"Reserve my spot — AI 101",
+      ctaatelier2:"Reserve my spot — Boost Your Productivity",
+      ctaatelier3:"Reserve my spot — Becoming a Business Analyst",
+      cta2:"Download the AI guide for SMEs",
+      dialcap:"laorai's job: move the needle toward clarity",
+      quote:"“Transforming ambitions into careers.”",
+      eyebrow2:"our mission",
+      mission1:"At Laorai Group, our mission is to make the most in-demand careers accessible to everyone through concrete, interactive, hands-on training.",
+      mission2:"We equip our learners with the skills, tools and confidence needed to succeed in their career transition — with the ambition of becoming the leading French-language name in professional training.",
+      eyebrowvalues:"our values",
+      value1h:"V.01 — Excellence", value1p:"High-quality training grounded in best practices and directly applicable at work.",
+      value2h:"V.02 — Innovation", value2p:"Bringing the most current tools, technologies and methods into every course.",
+      value3h:"V.03 — Accessibility", value3p:"Making tomorrow's careers accessible to everyone, whatever their starting point.",
+      value4h:"V.04 — Integrity", value4p:"Training with transparency, professionalism and ethics, at every step.",
+      eyebrow3:"our training",
+      divh2:"A catalog built to grow your career",
+      divp:"Laorai Group is a professional training academy built around three pillars, from your first workshop to personalized coaching.",
+      d1h:"Laorai Academy", d1p:"Career training to help you enter the most in-demand professions: business analysis, and soon project management, Product Owner, Scrum Master.",
+      d2h:"Laorai AI", d2p:"Hands-on AI training for business: AI 101, Boost Your Productivity, and custom automations.",
+      d3h:"Laorai Advisory", d3p:"One-on-one coaching — resume review, mock interviews, transition planning — plus digital transformation advisory for organizations.",
+      eyebrow4:"next event",
+      atelierh2:"A concrete first step",
+      atelierlabel:"one-time workshop",
+      atelierh3:"AI 101: Foundations",
+      atelierp:"Learn to structure your requests to get useful answers on the first try. You leave with your own ready-to-use prompt notebook — not just notes, a tool you reuse the very next day.",
+      ameta1:"📍 Online", ameta2:"🗓 Date to be confirmed", ameta3:"⏱ 90 minutes",
+      ameta4:"💻 Computer required",
+      ameta5:"💻 Computer + Claude Desktop installed",
+      benefitstitle:"By the end of this workshop, you will be able to:",
+      benefit1:"✅ Tell what AI can and can't do",
+      benefit2:"✅ Choose the right AI tool for the task",
+      benefit3:"✅ Master the 4-part prompting framework",
+      benefit4:"✅ Fix and improve an unsatisfying answer",
+      benefit5:"✅ Leave with your own prompt library",
+      trustline:"Led by Christelle, business analyst, AI trainer, and member of a corporate AI committee.",
+      agendatitle:"Workshop agenda",
+      agenda1:"1. Demystifying AI",
+      agenda2:"2. The tools landscape — which one for what use",
+      agenda3:"3. The prompting method (4-part framework)",
+      agenda4:"4. Guided practice on your own tool",
+      agenda5:"5. Iterating + common mistakes",
+      agenda6:"6. Wrap-up + prompt notebook handout",
+      pricesmall:"<br>per person",
+      ateliergroup:"Team (up to 10 people): custom quote",
+      guarantee:"✔ Every participant leaves with the PDF guide and their own prompt library.",
+      atelier2label:"workshop — level 2",
+      atelier2h3:"Boost Your Productivity with AI",
+      atelier2p:"Learn to use Claude directly inside Excel, Word and PowerPoint to speed up your daily work — models, presentations, document reviews — then build your own automations. You leave with concrete tools, not just ideas.",
+      ameta2b:"🗓 Date to be confirmed",
+      benefits2title:"By the end of this workshop, you will be able to:",
+      "benefit2-1":"✅ Use Claude directly inside Excel, Word and PowerPoint",
+      "benefit2-2":"✅ Build a model or analysis without breaking your formulas",
+      "benefit2-3":"✅ Generate a presentation in your own template",
+      "benefit2-4":"✅ Run an email → document → presentation workflow without retyping",
+      "benefit2-5":"✅ Create your first reusable custom Skill",
+      prerequisite:"Prerequisite: basic prompting knowledge recommended (AI 101 or equivalent) — not required.",
+      agenda2title:"Workshop agenda",
+      "a2-agenda1":"1. Quick recap of the fundamentals",
+      "a2-agenda2":"2. Claude in Excel — models, analysis, formulas kept intact",
+      "a2-agenda3":"3. Claude in PowerPoint — building a deck in your own template",
+      "a2-agenda4":"4. Claude in Word — review and drafting with tracked changes",
+      "a2-agenda5":"5. Full workflow: from an email to a final presentation",
+      "a2-agenda6":"6. Creating your first custom Skill",
+      "a2-agenda7":"7. Simple website with AI + action plan + wrap-up",
+      pricesmall2:"<br>per person",
+      ateliergroup2:"Team (up to 10 people): custom quote",
+      atelier2btn:"I reserve my spot",
+      guarantee2:"✔ Every participant leaves with their first Skill and an action plan.",
+      atelierbtn:"I reserve my spot",
+      featuredbadge:"★ Featured workshop",
+      atelier3label:"new — career training",
+      atelier3h3:"Becoming a Business Analyst",
+      atelier3p:"A career of the future, an accessible profession. Discover concretely what a business analyst does, the skills employers look for, useful certifications, and the steps to land your first role — with a live hands-on exercise.",
+      ameta3d:"🗓 Saturday, September 5, 2026, 10:00 AM (ET)",
+      ameta3b:"⏱ 2 hours",
+      benefits3title:"By the end of this workshop, you will be able to:",
+      "benefit3-1":"✅ Describe the role of a business analyst and its real deliverables",
+      "benefit3-2":"✅ Identify the certifications and skills that make the difference",
+      "benefit3-3":"✅ Reposition your background to enter the profession",
+      "benefit3-4":"✅ Turn a vague need into a clear requirement (hands-on exercise)",
+      "benefit3-5":"✅ Leave with a roadmap to start your career",
+      agenda3title:"Workshop agenda",
+      "a3-agenda1":"1. Introduction + why this is a career of the future",
+      "a3-agenda2":"2. The role in depth — deliverables, daily work, industries",
+      "a3-agenda3":"3. Break",
+      "a3-agenda4":"4. How to enter the profession, even via a career change",
+      "a3-agenda5":"5. Hands-on exercise: structuring a real case",
+      "a3-agenda6":"6. Q&A + next steps",
+      pricesmall3:"<br>per person",
+      ateliergroup3:"Limited spots — private follow-up sessions (resume, interview) offered after the workshop",
+      atelier3btn:"I reserve my spot",
+      guarantee3:"✔ Every participant leaves with a clear roadmap to start their career.",
+      eyebrow5:"founder",
+      founderh3:"Making AI plain, one decision at a time",
+      founderp1:"For several years, I supported teams through digital transformation — in industry, as a business analyst, then as an internal AI trainer. One thing kept coming up: everyone talked about artificial intelligence, but few knew how to use it concretely, day to day, without a technical team.",
+      founderp2:"I created Laorai Group to close that gap — making AI understandable and usable, in French and in English, for businesses that don't have the luxury of a technology department.",
+      tag1:"Training & plain-language AI", tag2:"Bilingual FR/EN", tag3:"Business analysis",
+      footerlede:"Transforming ambitions into careers.",
+      fnav1:"Navigation", fmission:"Mission", fdiv:"Divisions", fatelier:"Workshop",
+      fcontact:"Contact", finstagram:"Instagram", ffacebook:"Facebook",
+      fbottom:"Longueuil, Québec",
+      fprivacy:"Privacy Policy"
+    }
+  };
+  const original = {};
+  document.querySelectorAll('[data-i18n]').forEach(el=>{
+    original[el.getAttribute('data-i18n')] = el.innerHTML;
+  });
+  document.querySelectorAll('.lang-toggle button').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      document.querySelectorAll('.lang-toggle button').forEach(b=>b.classList.remove('active'));
+      btn.classList.add('active');
+      const lang = btn.getAttribute('data-lang');
+      document.querySelectorAll('[data-i18n]').forEach(el=>{
+        const key = el.getAttribute('data-i18n');
+        if(lang === 'en' && translations.en[key]) el.innerHTML = translations.en[key];
+        else el.innerHTML = original[key];
+      });
+      document.documentElement.lang = lang;
+    });
+  });
+</script>
+
+<!-- Hidden form for Netlify build-time detection -->
+<form name="atelier-inscription" data-netlify="true" netlify-honeypot="bot-field" hidden>
+  <input type="text" name="nom" />
+  <input type="email" name="courriel" />
+  <input type="text" name="entreprise" />
+  <input type="text" name="atelier" />
+  <textarea name="message"></textarea>
+  <input type="text" name="bot-field" />
+</form>
+
+<!-- Reservation modal -->
+<div id="reservation-overlay" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.8); z-index:100; align-items:center; justify-content:center; padding:20px;">
+  <div style="background:#111111; max-width:440px; width:100%; padding:36px 32px; position:relative; border:1px solid rgba(184,134,63,0.35);">
+    <button onclick="closeReservation()" style="position:absolute; top:16px; right:16px; background:none; border:none; font-size:20px; cursor:pointer; color:rgba(250,248,243,0.6);">✕</button>
+    <div class="eyebrow" style="margin-bottom:10px; color:#C7A06B;">réservation</div>
+    <h3 id="reservation-title" style="font-family:'Space Grotesk',sans-serif; font-weight:600; font-size:22px; margin-bottom:18px; color:#FAF8F3;">Je réserve ma place</h3>
+
+    <form id="reservation-form" name="atelier-inscription" method="POST" data-netlify="true" netlify-honeypot="bot-field" onsubmit="return submitReservation(event)">
+      <input type="hidden" name="form-name" value="atelier-inscription" />
+      <input type="hidden" name="atelier" id="reservation-atelier" value="" />
+      <p style="display:none;"><label>Ne pas remplir : <input name="bot-field" /></label></p>
+
+      <div style="margin-bottom:14px;">
+        <label style="display:block; font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:1px; text-transform:uppercase; color:#A78552; margin-bottom:6px;">Nom complet</label>
+        <input type="text" name="nom" required style="width:100%; padding:10px 12px; border:1px solid rgba(184,134,63,0.4); background:#1A1A1A; color:#FAF8F3; font-family:'IBM Plex Sans',sans-serif; font-size:14px;" />
+      </div>
+      <div style="margin-bottom:14px;">
+        <label style="display:block; font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:1px; text-transform:uppercase; color:#A78552; margin-bottom:6px;">Courriel</label>
+        <input type="email" name="courriel" required style="width:100%; padding:10px 12px; border:1px solid rgba(184,134,63,0.4); background:#1A1A1A; color:#FAF8F3; font-family:'IBM Plex Sans',sans-serif; font-size:14px;" />
+      </div>
+      <div style="margin-bottom:14px;">
+        <label style="display:block; font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:1px; text-transform:uppercase; color:#A78552; margin-bottom:6px;">Entreprise (optionnel)</label>
+        <input type="text" name="entreprise" style="width:100%; padding:10px 12px; border:1px solid rgba(184,134,63,0.4); background:#1A1A1A; color:#FAF8F3; font-family:'IBM Plex Sans',sans-serif; font-size:14px;" />
+      </div>
+      <div style="margin-bottom:22px;">
+        <label style="display:block; font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:1px; text-transform:uppercase; color:#A78552; margin-bottom:6px;">Message (optionnel)</label>
+        <textarea name="message" rows="2" style="width:100%; padding:10px 12px; border:1px solid rgba(184,134,63,0.4); background:#1A1A1A; color:#FAF8F3; font-family:'IBM Plex Sans',sans-serif; font-size:14px; resize:vertical;"></textarea>
+      </div>
+
+      <button type="submit" style="width:100%; justify-content:center; display:flex; align-items:center; gap:8px; padding:14px 26px; border-radius:1px; font-family:'IBM Plex Mono',monospace; font-size:11.5px; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; cursor:pointer; background:#A78552; border:1px solid #A78552; color:#111111; transition:all .25s ease;" onmouseover="this.style.background='#C7A06B'" onmouseout="this.style.background='#A78552'">Envoyer ma demande</button>
+      <p id="reservation-error" style="display:none; color:#C9635A; font-size:12.5px; margin-top:10px;">Une erreur est survenue — réessaie, ou écris directement à laoraigroup@outlook.com.</p>
+    </form>
+
+    <div id="reservation-success" style="display:none; text-align:center; padding:20px 0;">
+      <p style="font-family:'Space Grotesk',sans-serif; font-weight:600; font-size:20px; color:#C7A06B; margin-bottom:10px;">C'est noté ✓</p>
+      <p style="font-size:14px; color:rgba(250,248,243,0.7);">Merci ! Tu recevras les détails et le prix par courriel sous peu.</p>
+    </div>
+  </div>
+</div>
+
+<script>
+  function openReservation(atelierName){
+    document.getElementById('reservation-title').textContent = 'Je réserve ma place — ' + atelierName;
+    document.getElementById('reservation-atelier').value = atelierName;
+    document.getElementById('reservation-form').style.display = 'block';
+    document.getElementById('reservation-success').style.display = 'none';
+    document.getElementById('reservation-error').style.display = 'none';
+    document.getElementById('reservation-overlay').style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+  }
+  function closeReservation(){
+    document.getElementById('reservation-overlay').style.display = 'none';
+    document.body.style.overflow = '';
+  }
+  document.getElementById('reservation-overlay').addEventListener('click', function(e){
+    if(e.target === this) closeReservation();
+  });
+
+  function submitReservation(e){
+    e.preventDefault();
+    const form = e.target;
+    const data = new FormData(form);
+    fetch('/', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+      body: new URLSearchParams(data).toString()
+    })
+    .then(() => {
+      form.style.display = 'none';
+      document.getElementById('reservation-success').style.display = 'block';
+    })
+    .catch(() => {
+      document.getElementById('reservation-error').style.display = 'block';
+    });
+    return false;
+  }
+</script>
+
+</body>
+</html>
